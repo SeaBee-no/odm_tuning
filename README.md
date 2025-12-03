@@ -1,2 +1,3 @@
-# odm_tuning
-Exploring ODM parameters to try to improve orthophoto quality
+# ODM tuning
+
+Exploring ODM parameters to improve orthophoto quality.
