@@ -29,7 +29,6 @@ min-num-features: # Minimum number of features to extract per image
 force-gps: # Whether to use EXIF data or GCPs for final orthophoto positioning
   - true
 pc-filter: # Filter point cloud by removing points more than 'n' standard deviations from the local mean
-  - 2
   - 5
 use-fixed-camera-params: # Turns off camera parameter optimization during bundle adjustment
   - false
@@ -42,7 +41,6 @@ gps-accuracy: # Value in meters for GPS Dilution of Precision (DOP) information 
 matcher-type: # Matcher algorithm
   - flann
   - bow
-  - bruteforce
 feature-type: # Algorithm for extracting keypoints
   - dspsift
   - akaze
