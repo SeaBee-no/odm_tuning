@@ -1,3 +1,4 @@
+import math
 import os
 from itertools import product
 
@@ -59,6 +60,24 @@ def copy_mission_data(mission_dir, param_version, run_id, client, odm_options=No
     os.remove(temp_path)
 
     return dst_dir
+
+
+def count_param_combinations(yaml_path):
+    """Read parameter options from a YAML file and count the unique parameter combinations.
+
+    Args
+        yaml_path: Str. Path to YAML file with parameter options.
+
+    Returns
+        Int. Number of parameter combinations.
+    """
+    # Read YAML file
+    with open(yaml_path, "r") as f:
+        options = yaml.safe_load(f)
+
+    n_combos = math.prod([len(val) for val in options.values()])
+
+    return n_combos
 
 
 def get_param_combinations(yaml_path):
