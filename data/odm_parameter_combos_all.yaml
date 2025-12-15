@@ -1,0 +1,100 @@
+# Fixed parameters for consistency
+time: # Output processing time
+  - true
+skip-report: # Create a report
+  - false
+orthophoto-resolution: # Res in m. If a small value is set, resolution will be determined by the GSD
+  - 0.1
+dem-resolution: # Res in m. If a small value is set, resolution will be determined by the GSD
+  - 0.1
+dsm: # Create a DSM
+  - true
+dtm: # Create a DTM
+  - true
+cog: # Optimise for viewing both on- and offline
+  - true
+use-exif: # Always using EXIF data for initial camera priors in SfM
+  - true
+max-concurrency: # Max number of processes to use
+  - 16
+  
+# Variable parameters
+pc-quality: # Point cloud quality  
+  - medium
+  - high
+  - ultra
+feature-quality: # Feature extraction quality
+  - medium
+  - high
+  - ultra
+min-num-features: # Minimum number of features to extract per image
+  - 1000
+  - 10000
+  - 25000
+force-gps: # Whether to use EXIF data or GCPs for final orthophoto positioning
+  - false
+  - true
+pc-filter: # Filter point cloud by removing points more than 'n' standard deviations from the local mean
+  - 2
+  - 5
+use-fixed-camera-params: # Turns off camera parameter optimization during bundle adjustment
+  - false
+  - true
+sfm-algorithm: # Set structure from motion algorithm
+  - incremental
+  - triangulation
+  - planar
+gps-accuracy: # Value in meters for GPS Dilution of Precision (DOP) information for all images
+  - 0.1
+  - 1
+  - 3
+matcher-type: # Matcher algorithm
+  - flann
+  - bow
+  - bruteforce
+feature-type: # Algorithm for extracting keypoints
+  - dspsift
+  - akaze
+  - sift
+rolling-shutter: # Turn on rolling shutter correction
+  - false
+  - true
+camera-lens: # Set camera projection type
+  - auto
+  - brown
+  - fisheye
+  - fisheye_opencv
+dem-gapfill-steps: # Number of steps used to fill areas with gaps
+  - 0
+  - 3
+  - 5
+fast-orthophoto: # Skip dense reconstruction and 3D model generation
+  - false
+  - true
+bg-removal: # Use AI to remove the background 
+  - false
+  - true
+sky-removal: # Use AI to remove the sky
+  - false
+  - true
+auto-boundary: # Use camera shot locations to limit the area of reconstruction
+  - false
+  - true
+use-3dmesh: # Use a full 3D mesh to compute the orthophoto instead of a 2.5D mesh
+  - false
+  - true
+pc-rectify: # Perform ground rectification on the point cloud
+  - false
+  - true
+split: # Average number of images per submodel
+  - 1000
+  - 999999
+split-overlap: # Radius of the overlap between submodels in meters
+  - 150
+  - 300
+crop: # Crop image outputs by creating a smooth buffer around dataset boundaries
+  - 0
+  - 3
+matcher-neighbors: # Perform image matching with the nearest images based on GPS exif data
+  - 0
+  - 5
