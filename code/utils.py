@@ -37,7 +37,7 @@ def copy_mission_data(mission_dir, param_version, run_id, client, odm_options=No
     # Parse 'default' config file
     data = sb.ortho.parse_config(mission_dir)
 
-    # Update config. details
+    # Update basic details
     data["grouping"] = f"odm-tuning-{param_version:02d}-{run_id:03d}"
     data["project"] = "odm-tuning"
     data["mosaic"] = True
@@ -54,13 +54,30 @@ def copy_mission_data(mission_dir, param_version, run_id, client, odm_options=No
         data.pop("odm_options", None)
 
     # Save updated config.
-    config_path = os.path.join(dst_dir, "config.seabee.yaml")
-    temp_path = os.path.join(TEMP_DIR, "config.seabee.yaml")
-    write_config(temp_path, data)
-    sb.storage.copy_file(temp_path, config_path, client, overwrite=False)
-    os.remove(temp_path)
+    update_config(dst_dir, data, client, overwrite=False)
 
     return dst_dir
+
+
+def update_config(mission_dir, config_data, client, overwrite=False):
+    """Update (or create) a config. file in 'mission_dir' using data from 'config_data'.
+
+    Args
+        mission_dir: Str. Path to mission folder.
+        config_data: Dict. Data to write.
+        client: Obj. MinIO client.
+        overwrite: Bool. Whether to overwrite an existing config. file, if one exists.
+
+    Returns
+        Str. Path where config. file has been saved.
+    """
+    config_path = os.path.join(mission_dir, "config.seabee.yaml")
+    temp_path = os.path.join(TEMP_DIR, "config.seabee.yaml")
+    write_config(temp_path, config_data)
+    sb.storage.copy_file(temp_path, config_path, client, overwrite=overwrite)
+    os.remove(temp_path)
+
+    return config_path
 
 
 def count_param_combinations(yaml_path):
