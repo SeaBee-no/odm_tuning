@@ -25,6 +25,7 @@ feature-quality: # Feature extraction quality
   - high
 min-num-features: # Minimum number of features to extract per image
   - 10000
+  - 25000
 force-gps: # Whether to use EXIF data or GCPs for final orthophoto positioning
   - true
 pc-filter: # Filter point cloud by removing points more than 'n' standard deviations from the local mean
@@ -39,11 +40,13 @@ matcher-type: # Matcher algorithm
   - flann
 feature-type: # Algorithm for extracting keypoints
   - dspsift
+  - akaze
+  - sift
 rolling-shutter: # Turn on rolling shutter correction
   - false
   - true
 camera-lens: # Set camera projection type
-  - fisheye
+  - auto
 dem-gapfill-steps: # Number of steps used to fill areas with gaps
   - 3
 fast-orthophoto: # Skip dense reconstruction and 3D model generation
@@ -65,4 +68,4 @@ split-overlap: # Radius of the overlap between submodels in meters
 crop: # Crop image outputs by creating a smooth buffer around dataset boundaries
   - 10
 matcher-neighbors: # Perform image matching with the nearest images based on GPS exif data
-  - 0
+  - 8
