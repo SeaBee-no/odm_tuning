@@ -2,6 +2,7 @@ import math
 import os
 from itertools import product
 
+import numpy as np
 import yaml
 
 import seabeepy as sb
@@ -122,3 +123,25 @@ def write_config(config_path, data):
     """
     with open(config_path, "w") as yaml_file:
         yaml.dump(data, yaml_file, default_flow_style=False, allow_unicode=True)
+
+
+def get_attribute_by_path(data, path, sep="-"):
+    """
+    Get a nested value from dict using a path string. Returns None if any key in the path
+    is missing.
+
+    Args
+        data: Dict with nested data.
+        path: Str. Nested keys in data, delimited by 'sep'.
+        sep: Str. Character used to separate keys in 'path'.
+
+    Returns
+        Obj. Value from dict.
+    """
+    cur = data
+    for key in path.split(sep):
+        if isinstance(cur, dict) and key in cur:
+            cur = cur[key]
+        else:
+            return np.nan
+    return cur
