@@ -24,8 +24,9 @@ pc-quality: # Point cloud quality
 feature-quality: # Feature extraction quality
   - high
 min-num-features: # Minimum number of features to extract per image
-  - 10000
   - 25000
+  - 40000
+  - 50000
 force-gps: # Whether to use EXIF data or GCPs for final orthophoto positioning
   - true
 pc-filter: # Filter point cloud by removing points more than 'n' standard deviations from the local mean
@@ -33,18 +34,17 @@ pc-filter: # Filter point cloud by removing points more than 'n' standard deviat
 use-fixed-camera-params: # Turns off camera parameter optimization during bundle adjustment
   - false
 sfm-algorithm: # Set structure from motion algorithm
-  - incremental
+  - planar
 gps-accuracy: # Value in meters for GPS Dilution of Precision (DOP) information for all images
   - 0.1
 matcher-type: # Matcher algorithm
-  - flann
+  - bow
 feature-type: # Algorithm for extracting keypoints
   - dspsift
   - akaze
   - sift
 rolling-shutter: # Turn on rolling shutter correction
   - false
-  - true
 camera-lens: # Set camera projection type
   - auto
 dem-gapfill-steps: # Number of steps used to fill areas with gaps
@@ -68,4 +68,6 @@ split-overlap: # Radius of the overlap between submodels in meters
 crop: # Crop image outputs by creating a smooth buffer around dataset boundaries
   - 10
 matcher-neighbors: # Perform image matching with the nearest images based on GPS exif data
-  - 8
+  - 10
+  - 20
+  - 25

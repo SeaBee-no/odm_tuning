@@ -14,7 +14,7 @@ dtm: # Create a DTM
 cog: # Optimise for viewing both on- and offline
   - true
 use-exif: # Always using EXIF data for initial camera priors in SfM
-  - true
+  - false
 max-concurrency: # Max number of processes to use
   - 16
   
